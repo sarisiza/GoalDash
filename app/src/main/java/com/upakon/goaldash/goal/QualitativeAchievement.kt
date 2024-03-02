@@ -1,4 +1,4 @@
-package com.upakon.goaldash.goalDomain
+package com.upakon.goaldash.goal
 
 /**
  * Qualitative Achievements
@@ -8,7 +8,9 @@ package com.upakon.goaldash.goalDomain
  *
  * @constructor Creates a Quality Achievement
  */
-class QualitativeAchievement : AchievementType {
+data class QualitativeAchievement(
+    override val achievement: String
+) : AchievementType {
 
     //tracks if the task or project has been completed
     var completed = false

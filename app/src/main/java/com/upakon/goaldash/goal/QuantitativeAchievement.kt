@@ -1,7 +1,6 @@
-package com.upakon.goaldash.goalDomain
+package com.upakon.goaldash.goal
 
 import com.upakon.goaldash.utils.Date
-import java.util.Calendar
 
 
 /**
@@ -14,7 +13,8 @@ import java.util.Calendar
  * @property measure description of what are you tracking
  * @constructor Creates a Quantity Achievement
  */
-class QuantitativeAchievement(
+data class QuantitativeAchievement(
+    override val achievement: String,
     var required: Double,
     val measure: String
 ) : AchievementType {

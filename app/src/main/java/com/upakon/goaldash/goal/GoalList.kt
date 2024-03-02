@@ -1,4 +1,4 @@
-package com.upakon.goaldash.goalDomain
+package com.upakon.goaldash.goal
 
 class GoalList {
 
