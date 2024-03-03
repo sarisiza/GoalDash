@@ -1,7 +1,7 @@
-package com.upakon.goaldash.goalDomain
+package com.upakon.goaldash.goal
 
-import com.upakon.goaldash.utils.Date
-import java.util.Calendar
+import java.time.LocalDate
+import java.time.LocalDateTime
 
 
 /**
@@ -14,16 +14,17 @@ import java.util.Calendar
  * @property measure description of what are you tracking
  * @constructor Creates a Quantity Achievement
  */
-class QuantitativeAchievement(
+data class QuantitativeMetric(
+    override val achievement: String,
     var required: Double,
     val measure: String
-) : AchievementType {
+) : Metric {
 
     //saves the current value
-    private val current get() = tracker.values.sum()
+    val current get() = tracker.values.sum()
 
     //saves the progress by date
-    private val tracker: MutableMap<Date,Double> = mutableMapOf()
+    private val tracker: MutableMap<LocalDate,Double> = mutableMapOf()
 
     override fun isCompleted(): Boolean {
         return current >= required
@@ -36,22 +37,11 @@ class QuantitativeAchievement(
      * @param amount How much progress did you make
      */
     fun addProgress(
-        date: Date,
-        amount: Double
+        amount: Double,
+        date: LocalDate = LocalDate.now()
     ){
-        tracker[date] = amount
+        tracker[date] = tracker[date]?.plus(amount) ?: amount
     }
 
-    /**
-     * Gets the total that was tracked in a day
-     *
-     * @param date The day you want to check
-     * @return how much have you tracked that day
-     */
-    fun getAmountTrackedInDay(date: Date) : Double {
-        return tracker.filterKeys {
-            it.isInDay(date)
-        }.values.sum()
-    }
 
 }

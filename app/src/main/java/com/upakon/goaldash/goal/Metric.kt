@@ -1,4 +1,4 @@
-package com.upakon.goaldash.goalDomain
+package com.upakon.goaldash.goal
 
 /**
  * Defines the type of achievements
@@ -7,7 +7,9 @@ package com.upakon.goaldash.goalDomain
  *  - Qualitative
  *  - Quantitative
  */
-interface AchievementType{
+interface Metric{
+
+    val achievement: String
 
     /**
      * Returns if conditions of achievement have been completed
