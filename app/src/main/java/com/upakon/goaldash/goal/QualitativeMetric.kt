@@ -8,14 +8,19 @@ package com.upakon.goaldash.goal
  *
  * @constructor Creates a Quality Achievement
  */
-data class QualitativeAchievement(
+data class QualitativeMetric(
     override val achievement: String
-) : AchievementType {
+) : Metric {
 
     //tracks if the task or project has been completed
-    var completed = false
+    private var completed = false
 
     override fun isCompleted(): Boolean {
         return completed
     }
+
+    fun toggleCompletion(){
+        completed = !completed
+    }
+
 }

@@ -1,8 +1,7 @@
 package com.upakon.goaldash.goal
 
-import com.upakon.goaldash.di.GoalsApp
-import com.upakon.goaldash.utils.Date
-import java.util.Calendar
+import java.time.LocalDateTime
+import java.time.temporal.ChronoUnit
 
 
 /**
@@ -13,7 +12,7 @@ import java.util.Calendar
  *
  * @property what The name of the goal
  * @property why Why do you want to achieve this?
- * @property metrics How will you know you achieve it?
+ * @property metricList How will you know you achieve it?
  * @property endDate When should it be achieved?
  * @property importance How bad do you want it? (1 to 10)
  * @property taskList List of tasks on this goal
@@ -22,24 +21,21 @@ import java.util.Calendar
 data class Goal(
     var what: String,
     var why: String,
-    val metrics: MutableList<AchievementType>,
+    val metricList: MutableList<Metric>,
     var importance: Int,
-    var endDate: Date,
+    var endDate: LocalDateTime,
     val reward: String,
     val taskList: MutableList<Task> = mutableListOf()
 ){
 
-    private val endDateCalendar = Calendar.Builder()
-        .setDate(endDate.year,endDate.month,endDate.day)
-        .build()
-
-    fun getTimer() : Int {
-        return endDateCalendar.compareTo(Calendar.getInstance()) / 86400000
+    /**
+     * Method to get the days that are left until the end date
+     *
+     * @return days until end date
+     */
+    fun getTimer() : Long {
+        return LocalDateTime.now().until(endDate,ChronoUnit.DAYS) + 1
     }
 
-    fun changeEndDate(newDate: Date){
-        endDate = newDate
-        endDateCalendar.set(newDate.year,newDate.month,newDate.day)
-    }
 
 }

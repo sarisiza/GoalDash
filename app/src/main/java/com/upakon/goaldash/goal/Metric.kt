@@ -7,7 +7,7 @@ package com.upakon.goaldash.goal
  *  - Qualitative
  *  - Quantitative
  */
-interface AchievementType{
+interface Metric{
 
     val achievement: String
 
