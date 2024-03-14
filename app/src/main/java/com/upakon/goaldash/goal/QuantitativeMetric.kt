@@ -12,7 +12,6 @@ import java.time.LocalDateTime
  *
  * @property required the goal amount
  * @property measure description of what are you tracking
- * @constructor Creates a Quantity Achievement
  */
 data class QuantitativeMetric(
     override val achievement: String,
@@ -38,7 +37,7 @@ data class QuantitativeMetric(
      */
     fun addProgress(
         amount: Double,
-        date: LocalDate = LocalDate.now()
+        date: LocalDate
     ){
         tracker[date] = tracker[date]?.plus(amount) ?: amount
     }

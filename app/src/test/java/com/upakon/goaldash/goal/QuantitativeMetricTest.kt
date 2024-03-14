@@ -29,11 +29,13 @@ class QuantitativeMetricTest {
     @Test
     fun `test addProgress`(){
         testMetric.addProgress(
-            1.0
+            1.0,
+            LocalDate.now()
         )
         assertEquals(1.0,testMetric.current,0.0)
         testMetric.addProgress(
-            1.0
+            1.0,
+            LocalDate.now()
         )
         assertEquals(2.0,testMetric.current,0.0)
     }
@@ -45,7 +47,7 @@ class QuantitativeMetricTest {
 
     @Test
     fun `test checkCompletion when is completed`(){
-        testMetric.addProgress(8.0)
+        testMetric.addProgress(8.0,LocalDate.now())
         assertTrue(testMetric.isCompleted())
     }
 

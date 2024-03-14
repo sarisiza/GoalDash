@@ -2,6 +2,7 @@ package com.upakon.goaldash.goal
 
 import java.time.LocalDateTime
 import java.time.temporal.ChronoUnit
+import java.util.UUID
 
 
 /**
@@ -24,8 +25,9 @@ data class Goal(
     val metricList: MutableList<Metric>,
     var importance: Int,
     var endDate: LocalDateTime,
-    val reward: String,
-    val taskList: MutableList<Task> = mutableListOf()
+    var reward: String,
+    val taskList: MutableList<Task> = mutableListOf(),
+    val id: UUID = UUID.randomUUID()
 ){
 
     /**
